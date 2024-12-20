@@ -1,0 +1,418 @@
+mysql> create database nidhi;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> connect nidhi
+Connection id:    4
+Current database: nidhi
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql>  CREATE TABLE std (sno INT PRIMARY KEY, sname VARCHAR(25), marks INT, city VARCHAR(100), mobile bigint, gender VARCHAR(20));
+
+mysql> desc std;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| sno    | int(11)      | NO   | PRI | NULL    |       |
+| sname  | varchar(25)  | YES  |     | NULL    |       |
+| marks  | int(11)      | YES  |     | NULL    |       |
+| city   | varchar(100) | YES  |     | NULL    |       |
+| mobile | bigint(20)   | YES  |     | NULL    |       |
+| gender | varchar(20)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> INSERT INTO std (sno, sname, marks, city, mobile, gender)
+    -> VALUES
+    -> (1, 'Ram', 85, 'Hyderabad', '9876543210', 'Male'),
+    -> (2, 'Ravi', 92, 'Bangalore', '9988776655', 'Male'),
+    -> (3, 'Sita', 78, 'Mumbai', '9876543210', 'Female'),
+    -> (4, 'Arun', 88, 'Goa', '9554433221', 'Male'),
+    -> (5, 'Priya', 75, 'Hyderabad', '9321456789', 'Female'),
+    -> (6, 'Amit', 90, 'Bangalore', '9123456789', 'Male'),
+    -> (7, 'Neha', 95, 'Mumbai', '9345678901', 'Female'),
+    -> (8, 'Rani', 80, 'Goa', '9765432101', 'Female'),
+    -> (9, 'Mohan', 82, 'Hyderabad', '9512345678', 'Male'),
+    -> (10, 'Anjali', 89, 'Bangalore', '9678901234', 'Female'),
+    -> (11, 'Sunil', 77, 'Mumbai', '9123456789', 'Male'),
+    -> (12, 'Meera', 91, 'Goa', '9345678901', 'Female'),
+    -> (13, 'Raj', 83, 'Hyderabad', '9501234567', 'Male'),
+    -> (14, 'Geeta', 87, 'Bangalore', '9623456789', 'Female'),
+    -> (15, 'Vijay', 79, 'Goa', '9234567890', 'Male'),
+    -> (16, 'Karthik', 85, 'Chennai', '9745678901', 'Male');
+Query OK, 16 rows affected (0.00 sec)
+Records: 16  Duplicates: 0  Warnings: 0
+
+mysql> select * from std;
++-----+---------+-------+-----------+------------+--------+
+| sno | sname   | marks | city      | mobile     | gender |
++-----+---------+-------+-----------+------------+--------+
+|   1 | Ram     |    85 | Hyderabad | 9876543210 | Male   |
+|   2 | Ravi    |    92 | Bangalore | 9988776655 | Male   |
+|   3 | Sita    |    78 | Mumbai    | 9876543210 | Female |
+|   4 | Arun    |    88 | Goa       | 9554433221 | Male   |
+|   5 | Priya   |    75 | Hyderabad | 9321456789 | Female |
+|   6 | Amit    |    90 | Bangalore | 9123456789 | Male   |
+|   7 | Neha    |    95 | Mumbai    | 9345678901 | Female |
+|   8 | Rani    |    80 | Goa       | 9765432101 | Female |
+|   9 | Mohan   |    82 | Hyderabad | 9512345678 | Male   |
+|  10 | Anjali  |    89 | Bangalore | 9678901234 | Female |
+|  11 | Sunil   |    77 | Mumbai    | 9123456789 | Male   |
+|  12 | Meera   |    91 | Goa       | 9345678901 | Female |
+|  13 | Raj     |    83 | Hyderabad | 9501234567 | Male   |
+|  14 | Geeta   |    87 | Bangalore | 9623456789 | Female |
+|  15 | Vijay   |    79 | Goa       | 9234567890 | Male   |
+|  16 | Karthik |    85 | Chennai   | 9745678901 | Male   |
++-----+---------+-------+-----------+------------+--------+
+16 rows in set (0.00 sec)
+=======================================================================================================================================================================
+1)Display student details whose  city is in mumbai
+
+mysql> SELECT * FROM std WHERE city = 'Mumbai';
++-----+-------+-------+--------+------------+--------+
+| sno | sname | marks | city   | mobile     | gender |
++-----+-------+-------+--------+------------+--------+
+|   3 | Sita  |    78 | Mumbai | 9876543210 | Female |
+|   7 | Neha  |    95 | Mumbai | 9345678901 | Female |
+|  11 | Sunil |    77 | Mumbai | 9123456789 | Male   |
++-----+-------+-------+--------+------------+--------+
+3 rows in set (0.00 sec)
+=================================================================================================================================================================================
+2) Display student details whose city is in Hyderabad and in Mumbai
+
+mysql> SELECT * FROM std WHERE city = 'Mumbai'or city='Hyderabad';
++-----+-------+-------+-----------+------------+--------+
+| sno | sname | marks | city      | mobile     | gender |
++-----+-------+-------+-----------+------------+--------+
+|   1 | Ram   |    85 | Hyderabad | 9876543210 | Male   |
+|   3 | Sita  |    78 | Mumbai    | 9876543210 | Female |
+|   5 | Priya |    75 | Hyderabad | 9321456789 | Female |
+|   7 | Neha  |    95 | Mumbai    | 9345678901 | Female |
+|   9 | Mohan |    82 | Hyderabad | 9512345678 | Male   |
+|  11 | Sunil |    77 | Mumbai    | 9123456789 | Male   |
+|  13 | Raj   |    83 | Hyderabad | 9501234567 | Male   |
++-----+-------+-------+-----------+------------+--------+
+7 rows in set (0.00 sec)
+=====================================================================================================================================================================================
+3) Display female studens from Hyderabad and male students from Mumbai and all students from Bangloore
+
+mysql> SELECT *
+    -> FROM std
+    -> WHERE (city = 'Hyderabad' AND gender = 'Female') OR (city = 'Mumbai' AND gender = 'Male') OR city = 'Bangalore';
++-----+--------+-------+-----------+------------+--------+
+| sno | sname  | marks | city      | mobile     | gender |
++-----+--------+-------+-----------+------------+--------+
+|   2 | Ravi   |    92 | Bangalore | 9988776655 | Male   |
+|   5 | Priya  |    75 | Hyderabad | 9321456789 | Female |
+|   6 | Amit   |    90 | Bangalore | 9123456789 | Male   |
+|  10 | Anjali |    89 | Bangalore | 9678901234 | Female |
+|  11 | Sunil  |    77 | Mumbai    | 9123456789 | Male   |
+|  14 | Geeta  |    87 | Bangalore | 9623456789 | Female |
++-----+--------+-------+-----------+------------+--------+
+6 rows in set (0.00 sec)
+============================================================================================================================================================================================
+4)select  student details from Hyderabad citry,male students who scored more than 70 and female students who scored more than 50 and from mumbai only male students 
+
+mysql> SELECT * FROM std WHERE (city = 'Hyderabad' AND gender = 'Male' AND marks > 70)   OR (city = 'Hyderabad' AND gender = 'Female' AND marks > 50)   OR (city = 'Mumbai' AND gender = 'Male');
++-----+-------+-------+-----------+------------+--------+
+| sno | sname | marks | city      | mobile     | gender |
++-----+-------+-------+-----------+------------+--------+
+|   1 | Ram   |    85 | Hyderabad | 9876543210 | Male   |
+|   5 | Priya |    75 | Hyderabad | 9321456789 | Female |
+|   9 | Mohan |    82 | Hyderabad | 9512345678 | Male   |
+|  11 | Sunil |    77 | Mumbai    | 9123456789 | Male   |
+|  13 | Raj   |    83 | Hyderabad | 9501234567 | Male   |
++-----+-------+-------+-----------+------------+--------+
+5 rows in set (0.00 sec)
+===============================================================================================================================================================================================
+5)Display student details whose scor is between 80 -90 from city Hyderabad and Bangloore
+
+mysql> SELECT * FROM std
+    -> WHERE marks > 80 AND marks < 90
+    ->   AND (city = 'Hyderabad' OR city = 'Bangalore');
++-----+--------+-------+-----------+------------+--------+
+| sno | sname  | marks | city      | mobile     | gender |
++-----+--------+-------+-----------+------------+--------+
+|   1 | Ram    |    85 | Hyderabad | 9876543210 | Male   |
+|   9 | Mohan  |    82 | Hyderabad | 9512345678 | Male   |
+|  10 | Anjali |    89 | Bangalore | 9678901234 | Female |
+|  13 | Raj    |    83 | Hyderabad | 9501234567 | Male   |
+|  14 | Geeta  |    87 | Bangalore | 9623456789 | Female |
++-----+--------+-------+-----------+------------+--------+
+5 rows in set (0.00 sec)
+===============================================================================================================================================================================================
+6)Student details whose name starts with S and ends with A
+
+mysql> SELECT sname FROM std WHERE sname LIKE 'S%A';
++-------+
+| sname |
++-------+
+| Sita  |
++-------+
+1 row in set (0.00 sec)
+===================================================================================================================================================================================================
+7)Display number of students in each city
+
+mysql> SELECT city, COUNT(*) AS number_of_students FROM std GROUP BY city;
++-----------+--------------------+
+| city      | number_of_students |
++-----------+--------------------+
+| Bangalore |                  4 |
+| Chennai   |                  1 |
+| Goa       |                  4 |
+| Hyderabad |                  4 |
+| Mumbai    |                  3 |
++-----------+--------------------+
+5 rows in set (0.01 sec)
+=====================================================================================================================================================================================
+8)Best city in education based on score
+
+mysql> select gender,count(*) as number_gender from std group by gender;
++--------+---------------+
+| gender | number_gender |
++--------+---------------+
+| Female |             7 |
+| Male   |             9 |
++--------+---------------+
+2 rows in set (0.00 sec)
+=====================================================================================================================================================================================
+9)Top score in each city
+
+mysql> SELECT city, AVG(marks) AS average_score FROM std
+    -> GROUP BY city
+    -> ORDER BY average_score DESC;
++-----------+---------------+
+| city      | average_score |
++-----------+---------------+
+| Bangalore |       89.5000 |
+| Chennai   |       85.0000 |
+| Goa       |       84.5000 |
+| Mumbai    |       83.3333 |
+| Hyderabad |       81.2500 |
++-----------+---------------+
+5 rows in set (0.00 sec)
+=======================================================================================================================================================================================
+10)Display topper details in each cities
+
+mysql> SELECT city, MAX(marks) AS max_score FROM std
+    -> GROUP BY city
+    -> ORDER BY max_score DESC;
++-----------+-----------+
+| city      | max_score |
++-----------+-----------+
+| Mumbai    |        95 |
+| Bangalore |        92 |
+| Goa       |        91 |
+| Chennai   |        85 |
+| Hyderabad |        85 |
++-----------+-----------+
+1 rows in set (0.00 sec)
+============================================================================================================================================================================================
+11) Display topper details in hyderabad
+
+mysql> SELECT * FROM std
+    -> WHERE city = 'Hyderabad'
+    -> ORDER BY marks DESC
+    -> LIMIT 1;
++-----+-------+-------+-----------+------------+--------+
+| sno | sname | marks | city      | mobile     | gender |
++-----+-------+-------+-----------+------------+--------+
+|   1 | Ram   |    85 | Hyderabad | 9876543210 | Male   |
++-----+-------+-------+-----------+------------+--------+
+1 row in set (0.00 sec)
+===================================================================================================================================================================================================
+create table salespeople(snum int NOT NULL,sname varchar(30) NOT NULL,city varchar(30) NOT NULL,comm decimal(4,2) NOT NULL ,primary key(snum));
+mysql> desc salespeople;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| snum  | int(11)      | NO   | PRI | NULL    |       |
+| sname | varchar(30)  | NO   |     | NULL    |       |
+| city  | varchar(30)  | NO   |     | NULL    |       |
+| comm  | decimal(4,2) | NO   |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> INSERT INTO salespeople(snum,sname,city,comm)
+    -> VALUES
+    -> (1001,'peel','London',0.12),
+    -> (1002,'serres','San Jose',0.13),
+    -> (1044,'Motika','London',0.11),
+    -> (1007,'Rifkin','Barcelona',0.15),
+    -> (1003,'AxelRod','New York',0.10),
+    -> (1005,'Fran','London',0.26);
+Query OK, 6 rows affected (0.00 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from salespeople;
++------+---------+-----------+------+
+| snum | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | peel    | London    | 0.12 |
+| 1002 | serres  | San Jose  | 0.13 |
+| 1003 | AxelRod | New York  | 0.10 |
+| 1005 | Fran    | London    | 0.26 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+| 1044 | Motika  | London    | 0.11 |
++------+---------+-----------+------+
+6 rows in set (0.00 sec)
+==================================================================================================================================================================================================
+ create table customer(cnum int NOT NULL, cname varchar(30) NOT NULL, city varchar(30) NOT NULL, rating int NOT NULL, snum int NOT NULL,primary key(cnum),foreign key(snum) references salespeople(snum));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc customer;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| cnum   | int(11)     | NO   | PRI | NULL    |       |
+| cname  | varchar(30) | NO   |     | NULL    |       |
+| city   | varchar(30) | NO   |     | NULL    |       |
+| rating | int(11)     | NO   |     | NULL    |       |
+| snum   | int(11)     | NO   | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> INSERT INTO customer(cnum, cname, city, rating, snum)
+    -> VALUES
+    -> (2006, 'Clements', 'London', 100, 1001),
+    -> (2008, 'Cisneros', 'San Jose', 300, 1007),
+    -> (2007, 'Pereira', 'Rome', 100, 1004),
+    -> (2001, 'Hoffman', 'London', 100, 1001),
+    -> (2002, 'Goivanni', 'Rome', 200, 1003),
+    -> (2003, 'Liu', 'San Jose', 200, 1002),
+    -> (2004, 'Grass', 'Berlin', 300, 1002);
+ select * from customer;
++------+----------+----------+--------+------+
+| cnum | cname    | city     | rating | snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2002 | Goivanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2006 | Clements | London   |    100 | 1001 |
+| 2007 | Pereira  | Rome     |    100 | 1004 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+=====================================================================================================================================================================================================================
+1)Find number of customers for each sales people 
+
+ SELECT s.snum, s.sname, COUNT(c.cnum) AS num_customers
+    -> FROM salespeople s
+    -> LEFT JOIN customer c ON s.snum = c.snum
+    -> GROUP BY s.snum, s.sname;
++------+---------+---------------+
+| snum | sname   | num_customers |
++------+---------+---------------+
+| 1001 | peel    |             2 |
+| 1002 | serres  |             2 |
+| 1003 | AxelRod |             1 |
+| 1005 | Fran    |             0 |
+| 1007 | Rifkin  |             1 |
+| 1044 | Motika  |             0 |
++------+---------+---------------+
+6 rows in set (0.00 sec)
+============================================================================================================================================================================================
+2)best sales person based on customer rating
+
+
+mysql> SELECT s.snum, s.sname, AVG(c.rating) AS avg_rating
+    -> FROM salespeople s
+    -> JOIN customer c ON s.snum = c.snum
+    -> GROUP BY s.snum, s.sname
+    -> ORDER BY avg_rating DESC
+    -> LIMIT 1;
++------+--------+------------+
+| snum | sname  | avg_rating |
++------+--------+------------+
+| 1007 | Rifkin |   300.0000 |
++------+--------+------------+
+1 row in set (0.00 sec)
+===================================================================================================================================================================================================
+3)To whome we need to fire from sales people team
+
+ SELECT s.snum, s.sname, AVG(c.rating) AS avg_rating
+    -> FROM salespeople s
+    -> LEFT JOIN customer c ON s.snum = c.snum
+    -> GROUP BY s.snum, s.sname
+    -> ORDER BY avg_rating ASC
+    -> LIMIT 1;
++------+--------+------------+
+| snum | sname  | avg_rating |
++------+--------+------------+
+| 1044 | Motika |       NULL |
++------+--------+------------+
+1 row in set (0.00 sec)
+======================================================================================================================================================================================================
+4)Who has less custromer rating
+
+
+mysql> SELECT s.snum, s.sname, AVG(c.rating) AS avg_rating
+    -> FROM salespeople s
+    -> LEFT JOIN customer c ON s.snum = c.snum
+    -> GROUP BY s.snum, s.sname
+    -> ORDER BY avg_rating ASC
+    -> LIMIT 1;
++------+--------+------------+
+| snum | sname  | avg_rating |
++------+--------+------------+
+| 1044 | Motika |       NULL |
++------+--------+------------+
+1 row in set (0.00 sec)
+=========================================================================================================================================================================================================
+5)Display sales people who has customers from same city
+
+mysql> SELECT s.snum, s.sname, c.city, COUNT(c.cnum) AS num_customers
+    -> FROM salespeople s
+    -> JOIN customer c ON s.snum = c.snum
+    -> GROUP BY s.snum, s.sname, c.city
+    -> HAVING COUNT(c.cnum) > 1
+    -> ORDER BY s.sname, c.city;
++------+-------+--------+---------------+
+| snum | sname | city   | num_customers |
++------+-------+--------+---------------+
+| 1001 | peel  | London |             2 |
++------+-------+--------+---------------+
+1 row in set (0.01 sec)
+=========================================================================================================================================================================================================
+6)Find the names and numbers of all sales people who had more than one customer
+
+mysql> SELECT s.snum, s.sname
+    -> FROM salespeople s
+    -> JOIN customer c ON s.snum = c.snum
+    -> GROUP BY s.snum, s.sname
+    -> HAVING COUNT(c.cnum) > 1;
++------+--------+
+| snum | sname  |
++------+--------+
+| 1001 | peel   |
+| 1002 | serres |
++------+--------+
+2 rows in set (0.00 sec)
+============================================================================================================================================================================================================
+7)Find customers in sanJose who have rating above 200
+
+mysql> SELECT cnum, cname, city, rating
+    -> FROM customer
+    -> WHERE city = 'San Jose' AND rating > 200;
++------+----------+----------+--------+
+| cnum | cname    | city     | rating |
++------+----------+----------+--------+
+| 2008 | Cisneros | San Jose |    300 |
++------+----------+----------+--------+
+1 row in set (0.00 sec)
+===============================================================================================================================================================================================================
+8)List all customers with ratings above San Jose,s Average
+
+mysql> SELECT cnum, cname, city, rating
+    -> FROM customer
+    -> WHERE rating > (SELECT AVG(rating) FROM customer WHERE city = 'San Jose');
++------+----------+----------+--------+
+| cnum | cname    | city     | rating |
++------+----------+----------+--------+
+| 2004 | Grass    | Berlin   |    300 |
+| 2008 | Cisneros | San Jose |    300 |
++------+----------+----------+--------+
+2 rows in set (0.00 sec)
+=============================================================================================================================================================================================================
