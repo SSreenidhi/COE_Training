@@ -1,0 +1,65 @@
+
+Social Analysis
+
+Module :Social
+
+Columns: Marital status, income,citizenship
+Report: Providing pensions for people
+
+Columns: Age,Marital status,Parents status,income,citizenship
+Report: Scheme for unmarried people
+
+Columns: Qualification,Age,Parents status,citizenship
+Report: Scholarships for Orphans
+
+Columns: Age,Gender,Qualification
+Report: Awareness and Advertising Programmes for students
+
+======================================================================
+
+Financial
+
+Module:Finance
+
+Columns: Income,Citizenship,Tax filing status,age,
+Report: Providing Bank loans, Life Insurance
+
+
+
+======================================================================
+Economical Analysis
+
+Module :Economical status
+
+Columns: Income,Country
+Report: Comparing Country's economical status and implementing schemes for development
+
+Columns: Age,Citizenship,Country
+Report:Conducting voting polls
+
+======================================================================
+
+Medical
+
+Columns: Age,Qualification,Marital status, Gender,Parent status,Income
+Report:Providing Kits for Students
+ 
+Columns: Age,gender,income
+Report:Medical Camps or Checkups
+
+======================================================================
+Educational Analysis:
+
+Module: Education
+
+Columns: Qualification,Income,Parents status
+Report: Scholarships for students
+
+Columns: Qualification,Country,Age,Citizenship,Income
+Report: Migration and settlements scheme
+
+Columns: Age,Qualification,gender,no.of days worked
+Report: Skill Development and training programmes
+
+Columns: Age,Qualification,Gender
+Report: Reservations for students
