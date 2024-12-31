@@ -1,0 +1,111 @@
+Write All the SQL queries for below Questions and submit your assignment.
+
+
+1.Write a SQL query to create a table called Employee that contains five columns as emp_id,emp_name,emp_dept,emp_phoneno,emp_address and apply not null constraint on emp_phoneno, emp_dept and primary key constraint on emp_id columns.
+ mysql> CREATE table Employee (emp_id INT PRIMARY KEY, emp_name VARCHAR(100), emp_dept VARCHAR(50) NOT NULL, emp_phoneno VARCHAR(15) NOT NULL, emp_address VARCHAR(255));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Employee;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| emp_id      | int(11)      | NO   | PRI | NULL    |       |
+| emp_name    | varchar(100) | YES  |     | NULL    |       |
+| emp_dept    | varchar(50)  | NO   |     | NULL    |       |
+| emp_phoneno | varchar(15)  | NO   |     | NULL    |       |
+| emp_address | varchar(255) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+2.Write a SQL query to create a table called Salespeople that contains four columns as sid,sname,city,mobile and apply primary key constraint on sid and unique constraint on mobile number columns.
+ mysql> CREATE table Salespeople (sid INT PRIMARY KEY, sname VARCHAR(100), city VARCHAR(100), mobile VARCHAR(15) UNIQUE);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc salespeople;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| sid    | int(11)      | NO   | PRI | NULL    |       |
+| sname  | varchar(100) | YES  |     | NULL    |       |
+| city   | varchar(100) | YES  |     | NULL    |       |
+| mobile | varchar(15)  | YES  | UNI | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+3. Write a SQL query to create a table called orders that contains four columns as oid,order_amt,Order_date,customer_id and apply following constraints.
+ a. Primary key constraint on oid 
+ b. Not null constraint on order_date
+ c. unique key constraint on customer_id
+ d. set default order_amt is 0(zero), if user does not enter order_amt then zero should be inserted.
+mysql> CREATE table orders (oid INT PRIMARY KEY, order_amt DECIMAL(10, 2) DEFAULT 0, order_date DATE NOT NULL, customer_id INT UNIQUE);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc orders;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| oid         | int(11)       | NO   | PRI | NULL    |       |
+| order_amt   | decimal(10,2) | YES  |     | 0.00    |       |
+| order_date  | date          | NO   |     | NULL    |       |
+| customer_id | int(11)       | YES  | UNI | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+4. Write a SQL queries to create two tables called Salespeople and customer with following columns
+   Salespeople:
+     Snum,Sname,city and mobile
+
+   Customer:
+     cid,cname, city, rating and Snum
+   a. make Snum as foreign key in customer table.
+mysql> CREATE table Salespeople (Snum INT PRIMARY KEY, Sname VARCHAR(100), city VARCHAR(100), mobile VARCHAR(15));
+ERROR 1050 (42S01): Table 'salespeople' already exists
+mysql> CREATE table Salespeoples (Snum INT PRIMARY KEY, Sname VARCHAR(100), city VARCHAR(100), mobile VARCHAR(15));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc salespeoples;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| Snum   | int(11)      | NO   | PRI | NULL    |       |
+| Sname  | varchar(100) | YES  |     | NULL    |       |
+| city   | varchar(100) | YES  |     | NULL    |       |
+| mobile | varchar(15)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> CREATE table Customer (cid INT PRIMARY KEY, cname VARCHAR(100), city VARCHAR(100), rating INT, Snum INT, FOREIGN KEY (Snum) REFERENCES Salespeoples(Snum));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Customer;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| cid    | int(11)      | NO   | PRI | NULL    |       |
+| cname  | varchar(100) | YES  |     | NULL    |       |
+| city   | varchar(100) | YES  |     | NULL    |       |
+| rating | int(11)      | YES  |     | NULL    |       |
+| Snum   | int(11)      | YES  | MUL | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+______________________________________________________________________________________________________________________________________________________________________________________________________________________
+5. Write a SQL query to create a table called Students with five columns like
+    Sid, sname, city, marks, mobile
+    a. Apply primary key constraint on Sid
+    b. marks coloumn should allow more than 60 score, add constraint for marks column
+mysql> CREATE table Students (Sid INT PRIMARY KEY, sname VARCHAR(100), city VARCHAR(100), marks INT check (marks > 60), mobile VARCHAR(15));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Students;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| Sid    | int(11)      | NO   | PRI | NULL    |       |
+| sname  | varchar(100) | YES  |     | NULL    |       |
+| city   | varchar(100) | YES  |     | NULL    |       |
+| marks  | int(11)      | YES  |     | NULL    |       |
+| mobile | varchar(15)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+______________________________________________________________________________________________________________________________________________________________________

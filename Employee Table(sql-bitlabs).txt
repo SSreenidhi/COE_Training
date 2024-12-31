@@ -1,0 +1,77 @@
+Write All the SQL queries for below Questions and submit your assignment.
+
+1.Write a SQL query to create a table called Employee that contains five columns as emp_id,emp_name,emp_dept,emp_phoneno,emp_address.
+  mysql> CREATE table Employee (emp_id INT, emp_name VARCHAR(100), emp_dept VARCHAR(50), emp_phoneno VARCHAR(15), emp_address VARCHAR(255));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Employee;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| emp_id      | int(11)      | YES  |     | NULL    |       |
+| emp_name    | varchar(100) | YES  |     | NULL    |       |
+| emp_dept    | varchar(50)  | YES  |     | NULL    |       |
+| emp_phoneno | varchar(15)  | YES  |     | NULL    |       |
+| emp_address | varchar(255) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+________________________________________________________________________________________________________________________________________________
+2.Write a SQL  query to add the new column as joining_date in Employee table.
+  mysql> ALTER table Employee ADD joining_date DATE;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| emp_id       | int(11)      | YES  |     | NULL    |       |
+| emp_name     | varchar(100) | YES  |     | NULL    |       |
+| emp_dept     | varchar(50)  | YES  |     | NULL    |       |
+| emp_phoneno  | varchar(15)  | YES  |     | NULL    |       |
+| emp_address  | varchar(255) | YES  |     | NULL    |       |
+| joining_date | date         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+________________________________________________________________________________________________________________________________________
+3.Write a SQL query to change the datatype of a emp_phoneno in Employee table.
+  mysql> ALTER table Employee MODIFY emp_phoneno BIGINT;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| emp_id       | int(11)      | YES  |     | NULL    |       |
+| emp_name     | varchar(100) | YES  |     | NULL    |       |
+| emp_dept     | varchar(50)  | YES  |     | NULL    |       |
+| emp_phoneno  | bigint(20)   | YES  |     | NULL    |       |
+| emp_address  | varchar(255) | YES  |     | NULL    |       |
+| joining_date | date         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+________________________________________________________________________________________________________________________________________________
+4.Write a SQL query to delete the data inside the Employee table,but not table itself.
+  mysql> TRUNCATE table Employee;
+Query OK, 0 rows affected (0.01 sec)
+
+_____________________________________________________________________________________________________________________________________________
+5.Write a SQL query to drop a emp_phoneno from employee table.
+  mysql> ALTER table Employee DROP COLUMN emp_phoneno;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| emp_id       | int(11)      | YES  |     | NULL    |       |
+| emp_name     | varchar(100) | YES  |     | NULL    |       |
+| emp_dept     | varchar(50)  | YES  |     | NULL    |       |
+| emp_address  | varchar(255) | YES  |     | NULL    |       |
+| joining_date | date         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+________________________________________________________________________________________________________________________________________________

@@ -1,0 +1,113 @@
+Consider the following columns in Employee table to perform DML operations. Write all SQL queries for below questions and submit your assignment.
+
+Table Name: Employee
+
+Columns:    Employee_id, Employee_name, salary, Department_name, emp_address,  joiningdate
+mysql> CREATE TABLE Employee (Employee_id INT PRIMARY KEY, Employee_name VARCHAR(50), salary DECIMAL(10,2), Department_name VARCHAR(50), emp_address VARCHAR(100), joiningdate DATE);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Employee;
++-----------------+---------------+------+-----+---------+-------+
+| Field           | Type          | Null | Key | Default | Extra |
++-----------------+---------------+------+-----+---------+-------+
+| Employee_id     | int(11)       | NO   | PRI | NULL    |       |
+| Employee_name   | varchar(50)   | YES  |     | NULL    |       |
+| salary          | decimal(10,2) | YES  |     | NULL    |       |
+| Department_name | varchar(50)   | YES  |     | NULL    |       |
+| emp_address     | varchar(100)  | YES  |     | NULL    |       |
+| joiningdate     | date          | YES  |     | NULL    |       |
++-----------------+---------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+_________________________________________________________________________________________________________________________________________________________________________
+
+1.Write a  query to insert 10 records in to the Employee table.
+mysql> INSERT INTO Employee (Employee_id, Employee_name, salary, Department_name, emp_address, joiningdate) VALUES
+    -> (101, 'Ram', 40000, 'IT', 'Hyderabad', '2022-01-01'),
+    -> (102, 'Sham', 45000, 'Finance', 'Bangalore', '2022-01-15'),
+    -> (103, 'Mohan', 50000, 'IT', 'Mumbai', '2022-02-01'),
+    -> (104, 'Sita', 48000, 'HR', 'Delhi', '2022-03-01'),
+    -> (105, 'Geeta', 55000, 'Marketing', 'Hyderabad', '2022-04-01'),
+    -> (106, 'Radha', 60000, 'Finance', 'Bangalore', '2022-05-01'),
+    -> (107, 'Krishna', 58000, 'IT', 'Mumbai', '2022-06-01'),
+    -> (108, 'Arjun', 52000, 'HR', 'Delhi', '2022-07-01'),
+    -> (109, 'Karan', 62000, 'Marketing', 'Hyderabad', '2022-08-01'),
+    -> (110, 'Kiran', 57000, 'IT', 'Bangalore', '2022-09-01');
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employee;
++-------------+---------------+----------+-----------------+-------------+-------------+
+| Employee_id | Employee_name | salary   | Department_name | emp_address | joiningdate |
++-------------+---------------+----------+-----------------+-------------+-------------+
+|         101 | Ram           | 40000.00 | IT              | Hyderabad   | 2022-01-01  |
+|         102 | Sham          | 45000.00 | Finance         | Bangalore   | 2022-01-15  |
+|         103 | Mohan         | 50000.00 | IT              | Mumbai      | 2022-02-01  |
+|         104 | Sita          | 48000.00 | HR              | Delhi       | 2022-03-01  |
+|         105 | Geeta         | 55000.00 | Marketing       | Hyderabad   | 2022-04-01  |
+|         106 | Radha         | 60000.00 | Finance         | Bangalore   | 2022-05-01  |
+|         107 | Krishna       | 58000.00 | IT              | Mumbai      | 2022-06-01  |
+|         108 | Arjun         | 52000.00 | HR              | Delhi       | 2022-07-01  |
+|         109 | Karan         | 62000.00 | Marketing       | Hyderabad   | 2022-08-01  |
+|         110 | Kiran         | 57000.00 | IT              | Bangalore   | 2022-09-01  |
++-------------+---------------+----------+-----------------+-------------+-------------+
+10 rows in set (0.00 sec)
+_____________________________________________________________________________________________________________________________________________________________________
+
+2.Write a  query to update emp_address to hyderabad ,joiningdate to 12-02-2022 in Employee table where employee_id=123.
+mysql> UPDATE Employee SET emp_address = 'Hyderabad', joiningdate = '2022-02-12' WHERE Employee_id = 103;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from Employee;
++-------------+---------------+----------+-----------------+-------------+-------------+
+| Employee_id | Employee_name | salary   | Department_name | emp_address | joiningdate |
++-------------+---------------+----------+-----------------+-------------+-------------+
+|         101 | Ram           | 40000.00 | IT              | Hyderabad   | 2022-01-01  |
+|         102 | Sham          | 45000.00 | Finance         | Bangalore   | 2022-01-15  |
+|         103 | Mohan         | 50000.00 | IT              | Hyderabad   | 2022-02-12  |
+|         104 | Sita          | 48000.00 | HR              | Delhi       | 2022-03-01  |
+|         105 | Geeta         | 55000.00 | Marketing       | Hyderabad   | 2022-04-01  |
+|         106 | Radha         | 60000.00 | Finance         | Bangalore   | 2022-05-01  |
+|         107 | Krishna       | 58000.00 | IT              | Mumbai      | 2022-06-01  |
+|         108 | Arjun         | 52000.00 | HR              | Delhi       | 2022-07-01  |
+|         109 | Karan         | 62000.00 | Marketing       | Hyderabad   | 2022-08-01  |
+|         110 | Kiran         | 57000.00 | IT              | Bangalore   | 2022-09-01  |
++-------------+---------------+----------+-----------------+-------------+-------------+
+10 rows in set (0.00 sec)
+______________________________________________________________________________________________________________________________________________________________________
+
+3.Write a query to get the employee information from Employee table whose emp_id is 101
+mysql> SELECT * from Employee where Employee_id = 101;
++-------------+---------------+----------+-----------------+-------------+-------------+
+| Employee_id | Employee_name | salary   | Department_name | emp_address | joiningdate |
++-------------+---------------+----------+-----------------+-------------+-------------+
+|         101 | Ram           | 40000.00 | IT              | Hyderabad   | 2022-01-01  |
++-------------+---------------+----------+-----------------+-------------+-------------+
+1 row in set (0.00 sec)
+_________________________________________________________________________________________________________________________________________________________________________
+
+4.Write the query to select all the employees whose name ends with ‘a’
+mysql> SELECT * from Employee where Employee_name LIKE '%a';
++-------------+---------------+----------+-----------------+-------------+-------------+
+| Employee_id | Employee_name | salary   | Department_name | emp_address | joiningdate |
++-------------+---------------+----------+-----------------+-------------+-------------+
+|         104 | Sita          | 48000.00 | HR              | Delhi       | 2022-03-01  |
+|         105 | Geeta         | 55000.00 | Marketing       | Hyderabad   | 2022-04-01  |
+|         106 | Radha         | 60000.00 | Finance         | Bangalore   | 2022-05-01  |
+|         107 | Krishna       | 58000.00 | IT              | Mumbai      | 2022-06-01  |
++-------------+---------------+----------+-----------------+-------------+-------------+
+4 rows in set (0.00 sec)
+____________________________________________________________________________________________________________________________________________________________________
+
+5.Write a query to update employee deptname as ‘IT’ of Employee table where emp_id is 121
+mysql> UPDATE Employee SET Department_name = 'IT' WHERE Employee_id = 121;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from Employee where Employee_id=121;
++-------------+---------------+----------+-----------------+-------------+-------------+
+| Employee_id | Employee_name | salary   | Department_name | emp_address | joiningdate |
++-------------+---------------+----------+-----------------+-------------+-------------+
+|         121 | Kiran         | 57000.00 | IT              | Bangalore   | 2022-09-01  |
++-------------+---------------+----------+-----------------+-------------+-------------+
+1 row in set (0.00 sec)
+_____________________________________________________________________________________________________________________________________________________________________
